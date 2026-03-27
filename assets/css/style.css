@@ -1,0 +1,80 @@
+/* Luxe CRM Global Design System */
+
+:root {
+    --primary: #2563eb;
+    --primary-rgb: 37, 99, 235;
+    --on-primary: #ffffff;
+    --tertiary: #d97706;
+    --error: #dc2626;
+    --success: #16a34a;
+    --background: #f1f5f9;
+    --on-background: #0f172a;
+    --surface: #ffffff;
+    --surface-rgb: 255, 255, 255;
+    --on-surface: #0f172a;
+    --surface-variant: #e2e8f0;
+    --on-surface-variant: #64748b;
+    --outline: rgba(15, 23, 42, 0.1);
+}
+
+.dark {
+    --primary: #3b82f6;
+    --primary-rgb: 59, 130, 246;
+    --on-primary: #0f172a;
+    --background: #030712;
+    --on-background: #f1f5f9;
+    --surface: #0f172a;
+    --surface-rgb: 15, 23, 42;
+    --on-surface: #f1f5f9;
+    --surface-variant: #1e293b;
+    --on-surface-variant: #94a3b8;
+    --outline: rgba(248, 250, 252, 0.1);
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--background);
+    color: var(--on-background);
+    transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    line-height: 1;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+/* Common Components */
+.glass-header {
+    background: rgba(var(--surface-rgb), 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Animations */
+@keyframes revealUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-reveal {
+    animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stagger {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-stagger > * {
+    opacity: 0;
+    animation: stagger 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

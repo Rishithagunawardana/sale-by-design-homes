@@ -1,0 +1,24 @@
+# OS Junk
+.DS_Store
+Thumbs.db
+*.log
+
+# Project Specific
+.gemini/
+.agents/
+.agent/
+_agents/
+_agent/
+tmp/
+*.tmp
+
+# Artifacts/Brain
+brain/
+implementation_plan.md
+task.md
+walkthrough.md
+
+# Node/Build (if any)
+node_modules/
+dist/
+build/
