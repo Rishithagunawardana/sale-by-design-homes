@@ -18,6 +18,11 @@ implementation_plan.md
 task.md
 walkthrough.md
 
+# Firebase
+.firebase/
+firebase-debug.log
+firebaserc
+
 # Node/Build (if any)
 node_modules/
 dist/
