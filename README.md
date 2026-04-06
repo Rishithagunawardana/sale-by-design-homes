@@ -5,22 +5,21 @@
 ## Corporate Vision
 **Sale By Design Homes** is a premium property staging and interior design firm dedicated to maximizing real estate value through cinematic, high-end visual storytelling. This platform serves as the central hub for our clients, agents, and administrative leaders.
 
-## Version 2.0 - SaaS Architecture
-We have completely pivoted the CRM from a multi-page structure into a **high-performance, single-file application (`index.html`)**.
-
-### Key Features (V2.0)
-- **Airy Premium Light Theme**: Replaced legacy dark themes with a high contrast, modern SaaS-style layout featuring crisp white cards, soft borders, and floating headers.
-- **Unified Architecture**: Dashboard, Master Jobs (Kanban), Quotes Pipeline, Inventory, Calendar, and Intelligence modules all reside in one seamless DOM namespace controlled via pure JS logic.
-- **High-Performance Animations**: Zero-dependency `slideUpFade` entrance animations and fluid staggered card reveals. 
-- **Bento-Grid Dashboard**: Data-rich visualizations, Kanban logic, and CSS Masonry layouts. 
+## Key Features
+- **Cinematic Landing Page**: 100vh full-screen experience with smooth entrance animations and integrated business narrative.
+- **Role-Specific Portals**:
+    - **[Admin Portal](admin-login.html)**: System-level oversight and property pipeline management.
+    - **[Client Portal](client-login.html)**: High-end property tracking and gallery previews for homeowners.
+    - **[Agency Portal](agency-login.html)**: Performance metrics and architectural synergy for real estate partners.
+- **Bento-Grid Dashboards**: Data-rich visualizations tailored to each user role.
 - **Responsiveness**: Fully adaptive layouts for desktop, tablet, and mobile devices.
 
 ## Tech Stack
 - **Core**: Semantic HTML5 / Vanilla JavaScript (ES6+)
-- **Styling**: Premium Custom Vanilla CSS (SaaS UI framework approach)
-- **Typography**: Plus Jakarta Sans (via Google Fonts)
-- **Iconography**: FontAwesome 6
-- **Automation**: Github Actions (CI/CD to Firebase Hosting)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com) (with @tailwindcss/forms & @tailwindcss/container-queries)
+- **Typography**: Outfit & Manrope (via Google Fonts)
+- **Iconography**: Material Symbols Outlined (Direct Injection)
+- **Automation**: Github Actions (CI/CD)
 
 ## Getting Started
 1. Clone the repository:
