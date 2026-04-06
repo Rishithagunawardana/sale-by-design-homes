@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale by Design Homes | Modern OS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Premium Light Color Palette */
+            --bg-base: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-hover: #f1f5f9;
+            
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --primary-light: #eff6ff;
+            
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --warning: #f59e0b;
+            --warning-light: #fffbeb;
+            --error: #ef4444;
+            --error-light: #fef2f2;
+            
+            --border-light: #e2e8f0;
+            --border-hover: #cbd5e1;
+            
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ----- SIDEBAR ----- */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-surface);
+            border-right: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            padding: 32px 24px;
+            z-index: 50;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 48px;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            margin-top: 24px;
+        }
+
+        .nav-items { display: flex; flex-direction: column; gap: 4px; }
+
+        .nav-item {
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-item i { width: 20px; text-align: center; font-size: 1.1rem; transition: all 0.2s; }
+        .nav-item:hover { background: var(--bg-hover); color: var(--text-main); }
+        .nav-item.active { background: var(--primary-light); color: var(--primary); }
+        .nav-item.active i { color: var(--primary); }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            background: var(--bg-hover);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* ----- MAIN WORKSPACE ----- */
+        .workspace {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* HEADER */
+        .top-header {
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 16px 12px 48px;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-light);
+            background: var(--bg-surface);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-xl);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: white; border: 1px solid var(--border-light); color: var(--text-main);
+        }
+
+        .btn-primary {
+            background: var(--text-main);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background: #000;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-accent {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        .btn-accent:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-sm { padding: 8px 16px; font-size: 0.8rem; border-radius: var(--radius-md); }
+
+        /* SECTION CONTAINERS */
+        .section {
+            padding: 32px 48px 64px 48px;
+            display: none;
+            animation: fadeSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .section.active { display: block; }
+
+        @keyframes fadeSlideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CARDS & GRIDS */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-hover);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .icon-blue { background: var(--primary-light); color: var(--primary); }
+        .icon-green { background: var(--success-light); color: var(--success); }
+        .icon-amber { background: var(--warning-light); color: var(--warning); }
+        .icon-red { background: var(--error-light); color: var(--error); }
+        .icon-gray { background: var(--bg-hover); color: var(--text-muted); }
+
+        .stat-title {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .stat-val {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .stat-trend {
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .trend-up { color: var(--success); }
+        .trend-down { color: var(--error); }
+
+        /* Secondary Grid Area */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+        
+        .triple-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Modern Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 16px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-light);
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 20px 16px;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        tr:last-child td { border-bottom: none; }
+        
+        tr { transition: background 0.2s; }
+        tr:hover { background: var(--bg-hover); }
+
+        .property-cell {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .property-img {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: var(--bg-hover);
+            object-fit: cover;
+        }
+
+        .fw-bold { font-weight: 700; }
+        .text-sm { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+        .pill-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .badge-success { background: var(--success-light); color: var(--success); }
+        .badge-warning { background: var(--warning-light); color: var(--warning); }
+        .badge-info { background: var(--primary-light); color: var(--primary); }
+        .badge-neutral { background: var(--bg-hover); color: var(--text-muted); }
+        .badge-error { background: var(--error-light); color: var(--error); }
+
+        /* Logistics Timeline */
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .timeline-time {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            width: 60px;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--bg-hover);
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary);
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        /* --- KANBAN JOBS BOARD --- */
+        .kanban-board {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding-bottom: 24px;
+            min-height: 70vh;
+        }
+
+        .kanban-column {
+            width: 320px;
+            flex-shrink: 0;
+            background: rgba(241, 245, 249, 0.5); /* slate-100 trans */
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            border: 1px dashed var(--border-hover);
+        }
+
+        .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .column-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .job-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+        }
+        
+        .job-blue::before { background: var(--primary); }
+        .job-amber::before { background: var(--warning); }
+        .job-green::before { background: var(--success); }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+
+        .job-price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .job-agent {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .agent-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 700;
+        }
+        
+        /* Agent Card (Agents View) */
+        .agent-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+        
+        .agent-profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--bg-hover);
+            margin: 0 auto 16px auto;
+            border: 2px solid var(--border-light);
+        }
+        
+        /* Utility */
+        .text-primary { color: var(--primary); }
+        .text-error { color: var(--error); }
+
+        /* Calendar Grid */
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .cal-day-header {
+            text-align: center;
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            padding-bottom: 8px;
+        }
+        .cal-cell {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            height: 100px;
+            border-radius: var(--radius-md);
+            padding: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .cal-cell.today {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+        .cal-event {
+            background: var(--bg-hover);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            margin-top: 4px;
+            color: var(--text-muted);
+            border-left: 2px solid var(--border-hover);
+        }
+        .cal-event.install { border-left-color: var(--primary); background: var(--primary-light); color: var(--primary); }
+
+    </style>
+</head>
+<body>
+
+<nav class="sidebar">
+    <div class="brand-logo">
+        <div class="brand-icon"><i class="fa fa-layer-group"></i></div>
+        Sale By Design
+    </div>
+
+    <div class="nav-label">Core Modules</div>
+    <div class="nav-items">
+        <a class="nav-item active" onclick="showSection('dashboard', this)">
+            <i class="fa-solid fa-chart-pie"></i> Executive Overview
+        </a>
+        <a class="nav-item" onclick="showSection('jobs', this)">
+            <i class="fa-solid fa-kanban"></i> Master Jobs Board
+        </a>
+        <a class="nav-item" onclick="showSection('quotes', this)">
+            <i class="fa-solid fa-file-invoice"></i> Pending Quotes
+            <span class="nav-badge">12</span>
+        </a>
+    </div>
+
+    <div class="nav-label">Operations</div>
+    <div class="nav-items">
+        <a class="nav-item" onclick="showSection('inventory', this)">
+            <i class="fa-solid fa-boxes-stacked"></i> Inventory Hub
+        </a>
+        <a class="nav-item" onclick="showSection('calendar', this)">
+            <i class="fa-solid fa-calendar-days"></i> Calendar
+        </a>
+        <a class="nav-item" onclick="showSection('agents', this)">
+            <i class="fa-solid fa-users"></i> Client Intelligence
+        </a>
+    </div>
+
+    <div class="sidebar-footer">
+        <div class="footer-avatar">AG</div>
+        <div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-main);">Adithya G.</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Admin</div>
+        </div>
+    </div>
+</nav>
+
+<div class="workspace">
+    <header class="top-header">
+        <div class="page-title" id="header-title">Executive Overview</div>
+        
+        <div class="header-actions">
+            <div class="search-bar">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search properties, clients, or SKUs...">
+            </div>
+            
+            <button class="btn btn-primary" onclick="alert('Creating new CRM object')">
+                <i class="fa fa-plus"></i> New Quote
+            </button>
+        </div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <div class="section active" id="dashboard">
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Revenue (MTD)</div>
+                    <div class="stat-icon icon-blue"><i class="fa-solid fa-dollar-sign"></i></div>
+                </div>
+                <div class="stat-val">$245,850</div>
+                <div class="stat-trend trend-up"><i class="fa fa-arrow-up"></i> 12.5% vs last month</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Active Staging Jobs</div>
+                    <div class="stat-icon icon-amber"><i class="fa-solid fa-house"></i></div>
+                </div>
+                <div class="stat-val">34</div>
+                <div class="stat-trend trend-up"><i class="fa fa-arrow-up"></i> 4 new this week</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Quote Conversion</div>
+                    <div class="stat-icon icon-green"><i class="fa-solid fa-chart-line"></i></div>
+                </div>
+                <div class="stat-val">68.2%</div>
+                <div class="stat-trend trend-up"><i class="fa fa-arrow-up"></i> 2.1% improvement</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Asset Utilization</div>
+                    <div class="stat-icon icon-red"><i class="fa-solid fa-couch"></i></div>
+                </div>
+                <div class="stat-val">89.4%</div>
+                <div class="stat-trend trend-down"><i class="fa fa-arrow-down"></i> Critically high stock out</div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">Urgent Actions & REA Detections</div>
+                    <button class="btn btn-outline btn-sm">View All</button>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Status</th>
+                            <th>Next Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="property-cell">
+                                    <div class="property-img"></div>
+                                    <div>
+                                        <div class="fw-bold">14 Oceanview Terrace</div>
+                                        <div class="text-sm">Ray White · 42 Days Active</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="pill-badge badge-success"><i class="fa fa-check-circle"></i> Sold Detected</span></td>
+                            <td><button class="btn btn-accent btn-sm">Book Removal</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="property-cell">
+                                    <div class="property-img" style="background:#e2e8f0;"></div>
+                                    <div>
+                                        <div class="fw-bold">88 Mitchell Street, Unit 5</div>
+                                        <div class="text-sm">Jellis Craig · 65 Days Active</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="pill-badge badge-warning"><i class="fa fa-clock"></i> Term Expiring</span></td>
+                            <td><button class="btn btn-outline btn-sm">Extend Lease</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">Tomorrow's Logistics</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">08:00</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Install: 45 Greenhill Rd</div>
+                        <div class="text-sm">Truck A · Team Alpha (3 staff)</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">11:30</div>
+                    <div class="timeline-content" style="border-color: var(--warning);">
+                        <div class="timeline-title">Removal: 12 Marina Blvd</div>
+                        <div class="text-sm">Truck B · Team Beta (2 staff)</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">14:00</div>
+                    <div class="timeline-content" style="border-color: var(--success);">
+                        <div class="timeline-title">Client Meeting: Knight Frank</div>
+                        <div class="text-sm">At Office · Account Review</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MASTER JOBS BOARD -->
+    <div class="section" id="jobs">
+        <div style="display:flex; justify-content:space-between; margin-bottom: 24px;">
+            <p style="color:var(--text-muted);">Drag and drop jobs across the pipeline lifecycle.</p>
+            <div style="display:flex; gap:12px;">
+                <input type="text" placeholder="Filter jobs..." class="btn-outline" style="outline:none; width:200px; padding:10px 16px;">
+                <button class="btn btn-outline"><i class="fa fa-filter"></i> Filters</button>
+            </div>
+        </div>
+
+        <div class="kanban-board">
+            <div class="kanban-column">
+                <div class="column-header">
+                    <div class="column-title">Needs Scheduling <span class="text-primary">(3)</span></div>
+                </div>
+                
+                <div class="job-card job-amber">
+                    <div class="fw-bold" style="margin-bottom:8px;">12 Miller Street</div>
+                    <div class="job-price">$4,250</div>
+                    <div class="text-sm"><i class="fa fa-cube"></i> Full Home Staging (4 Bed)</div>
+                    <div class="job-agent">
+                        <div class="agent-avatar">SJ</div>
+                        <div class="text-sm" style="margin:0;">Sarah Jenkins · Ray White</div>
+                    </div>
+                </div>
+
+                <div class="job-card job-amber">
+                    <div class="fw-bold" style="margin-bottom:8px;">89 Viewmount Drive</div>
+                    <div class="job-price">$2,900</div>
+                    <div class="text-sm"><i class="fa fa-cube"></i> Partial Staging</div>
+                    <div class="job-agent">
+                        <div class="agent-avatar">TH</div>
+                        <div class="text-sm" style="margin:0;">Tom Hanks · Buxton</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kanban-column">
+                <div class="column-header">
+                    <div class="column-title">Scheduled (Install) <span class="text-primary">(2)</span></div>
+                </div>
+                
+                <div class="job-card job-blue">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                        <span class="pill-badge badge-info" style="padding:2px 8px; font-size:0.65rem;">TOMORROW</span>
+                    </div>
+                    <div class="fw-bold" style="margin-bottom:8px;">45 Greenhill Rd</div>
+                    <div class="job-price">$7,100</div>
+                    <div class="text-sm"><i class="fa fa-truck"></i> Truck A · 08:00 AM</div>
+                </div>
+                
+                <div class="job-card job-blue">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                        <span class="pill-badge badge-neutral" style="padding:2px 8px; font-size:0.65rem;">APR 12</span>
+                    </div>
+                    <div class="fw-bold" style="margin-bottom:8px;">15 Grand Boulevard</div>
+                    <div class="job-price">$9,400</div>
+                    <div class="text-sm"><i class="fa fa-truck"></i> Truck B · 10:00 AM</div>
+                </div>
+            </div>
+
+            <div class="kanban-column">
+                <div class="column-header">
+                    <div class="column-title">Active (On Site) <span class="text-primary">(18)</span></div>
+                </div>
+                
+                <div class="job-card job-green">
+                    <div class="fw-bold" style="margin-bottom:8px;">14 Oceanview Terrace</div>
+                    <div style="margin-bottom:8px;"><span class="pill-badge badge-warning">Lease ends in 4 Days</span></div>
+                    <div class="text-sm"><i class="fa fa-clock"></i> Active for 42 Days</div>
+                </div>
+                
+                <div class="job-card job-green">
+                    <div class="fw-bold" style="margin-bottom:8px;">88 Mitchell Street, Unit 5</div>
+                    <div style="margin-bottom:8px;"><span class="pill-badge badge-error">OVERDUE</span></div>
+                    <div class="text-sm"><i class="fa fa-clock"></i> Active for 65 Days</div>
+                </div>
+            </div>
+            
+            <div class="kanban-column">
+                <div class="column-header">
+                    <div class="column-title">Needs Removal <span class="text-primary">(1)</span></div>
+                </div>
+                
+                 <div class="job-card job-green">
+                    <div class="fw-bold" style="margin-bottom:8px;">22 Sunset Boulevard</div>
+                    <div style="margin-bottom:8px;"><span class="pill-badge badge-success">Property Sold</span></div>
+                    <button class="btn btn-accent btn-sm" style="width:100%; justify-content:center; margin-top:8px;">Schedule Removal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PENDING QUOTES -->
+    <div class="section" id="quotes">
+        <div class="panel">
+            <div class="panel-header">
+                <div class="panel-title">Pending & Sent Quotes</div>
+                <button class="btn btn-accent btn-sm">Create New Quote</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Client/Agent</th>
+                        <th>Property Address</th>
+                        <th>Value</th>
+                        <th>Sent Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="fw-bold">Jane Doe</div>
+                            <div class="text-sm">Jellis Craig</div>
+                        </td>
+                        <td class="fw-bold">59 Smith St, Darwin</td>
+                        <td>$5,400</td>
+                        <td>Apr 4, 2026</td>
+                        <td><span class="pill-badge badge-info">Sent</span></td>
+                        <td><button class="btn btn-outline btn-sm">Resend</button></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="fw-bold">John Smith</div>
+                            <div class="text-sm">Independent</div>
+                        </td>
+                        <td class="fw-bold">12/44 Ocean View Dr</td>
+                        <td>$8,200</td>
+                        <td>Apr 2, 2026</td>
+                        <td><span class="pill-badge badge-warning">Draft</span></td>
+                        <td><button class="btn btn-accent btn-sm">Complete Quote</button></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="fw-bold">Sarah Jenkins</div>
+                            <div class="text-sm">Ray White</div>
+                        </td>
+                        <td class="fw-bold">34 Elm Street</td>
+                        <td>$4,100</td>
+                        <td>Mar 30, 2026</td>
+                        <td><span class="pill-badge badge-success">Approved</span></td>
+                        <td><button class="btn btn-primary btn-sm">Convert to Job</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- INVENTORY HUB -->
+    <div class="section" id="inventory">
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-title">Total SKUs Active</div>
+                <div class="stat-val">2,481</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Items Out on Jobs</div>
+                <div class="stat-val">1,842 <span class="text-sm text-primary">(74%)</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Damaged / Repair</div>
+                <div class="stat-val text-error">24</div>
+            </div>
+            <div class="stat-card" style="background:var(--primary); color:white; display:flex; flex-direction:column; justify-content:center; align-items:center; cursor:pointer;">
+                <i class="fa fa-barcode" style="font-size:2rem; margin-bottom:12px;"></i>
+                <div class="fw-bold">Scan Barcode</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <div class="panel-title">Asset Catalog</div>
+                <div class="search-bar">
+                    <i class="fa fa-search"></i>
+                    <input type="text" placeholder="Search by SKU, Name, or Category...">
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Asset Image</th>
+                        <th>SKU / Name</th>
+                        <th>Category</th>
+                        <th>Total Stock</th>
+                        <th>In Warehouse</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="property-img"></div></td>
+                        <td>
+                            <div class="fw-bold">LUX-SOFA-3S-GRY</div>
+                            <div class="text-sm">Luxe 3-Seater Sofa (Grey)</div>
+                        </td>
+                        <td>Living Room</td>
+                        <td>12</td>
+                        <td><span class="text-error fw-bold">0</span></td>
+                        <td><span class="pill-badge badge-error">Out of Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="property-img"></div></td>
+                        <td>
+                            <div class="fw-bold">MOD-CHAIR-ACCENT</div>
+                            <div class="text-sm">Modern Accent Chair (Navy)</div>
+                        </td>
+                        <td>Living Room</td>
+                        <td>24</td>
+                        <td><span class="fw-bold">5</span></td>
+                        <td><span class="pill-badge badge-warning">Low Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="property-img"></div></td>
+                        <td>
+                            <div class="fw-bold">ART-CANVAS-ABST-01</div>
+                            <div class="text-sm">Abstract Canvas Art 120x80</div>
+                        </td>
+                        <td>Decor & Art</td>
+                        <td>40</td>
+                        <td><span class="fw-bold">18</span></td>
+                        <td><span class="pill-badge badge-success">In Stock</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- OPERATIONS CALENDAR -->
+    <div class="section" id="calendar">
+        <div class="panel">
+            <div class="panel-header">
+                <div class="panel-title">Operations Calendar &mdash; April 2026</div>
+                <div class="header-actions">
+                    <button class="btn btn-outline btn-sm"><i class="fa fa-chevron-left"></i></button>
+                    <button class="btn btn-outline btn-sm">Today</button>
+                    <button class="btn btn-outline btn-sm"><i class="fa fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="cal-grid">
+                <div class="cal-day-header">SUN</div>
+                <div class="cal-day-header">MON</div>
+                <div class="cal-day-header">TUE</div>
+                <div class="cal-day-header">WED</div>
+                <div class="cal-day-header">THU</div>
+                <div class="cal-day-header">FRI</div>
+                <div class="cal-day-header">SAT</div>
+
+                <div class="cal-cell" style="color:var(--text-light)">29</div>
+                <div class="cal-cell" style="color:var(--text-light)">30</div>
+                <div class="cal-cell" style="color:var(--text-light)">31</div>
+                <div class="cal-cell">1</div>
+                <div class="cal-cell">2
+                    <div class="cal-event">Removal: 12 Marina</div>
+                </div>
+                <div class="cal-cell">3</div>
+                <div class="cal-cell">4</div>
+
+                <div class="cal-cell">5</div>
+                <div class="cal-cell today">6
+                    <div class="cal-event install">Install: 45 Greenhill</div>
+                    <div class="cal-event">Removal: 12 Marina</div>
+                </div>
+                <div class="cal-cell">7
+                    <div class="cal-event install">Install: 15 Grand Blvd</div>
+                </div>
+                <div class="cal-cell">8</div>
+                <div class="cal-cell">9</div>
+                <div class="cal-cell">10</div>
+                <div class="cal-cell">11</div>
+                
+                <div class="cal-cell">12</div>
+                <div class="cal-cell">13</div>
+                <div class="cal-cell">14
+                    <div class="cal-event">Removal: 14 Oceanview</div>
+                </div>
+                <div class="cal-cell">15</div>
+                <div class="cal-cell">16</div>
+                <div class="cal-cell">17</div>
+                <div class="cal-cell">18</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CLIENT INTELLIGENCE -->
+    <div class="section" id="agents">
+        <div class="panel-header" style="margin-bottom:0;">
+            <h3>Top Performing Agents</h3>
+            <button class="btn btn-outline btn-sm">Add New Agent</button>
+        </div>
+        <br>
+        <div class="triple-grid">
+            <div class="agent-card">
+                <div class="agent-profile-img"></div>
+                <h3 style="margin-bottom:4px;">Sarah Jenkins</h3>
+                <div class="text-sm text-primary fw-bold" style="margin-bottom:16px;">Ray White</div>
+                
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.8rem;">
+                    <span class="text-muted">Total Spend YTD</span>
+                    <span class="fw-bold">$42,500</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:16px; font-size:0.8rem;">
+                    <span class="text-muted">Active Jobs</span>
+                    <span class="fw-bold text-primary">3</span>
+                </div>
+                <button class="btn btn-outline btn-sm" style="width:100%; justify-content:center;">View Full Profile</button>
+            </div>
+            
+            <div class="agent-card">
+                <div class="agent-profile-img"></div>
+                <h3 style="margin-bottom:4px;">Tom Hanks</h3>
+                <div class="text-sm text-primary fw-bold" style="margin-bottom:16px;">Buxton</div>
+                
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.8rem;">
+                    <span class="text-muted">Total Spend YTD</span>
+                    <span class="fw-bold">$28,100</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:16px; font-size:0.8rem;">
+                    <span class="text-muted">Active Jobs</span>
+                    <span class="fw-bold text-primary">1</span>
+                </div>
+                <button class="btn btn-outline btn-sm" style="width:100%; justify-content:center;">View Full Profile</button>
+            </div>
+            
+            <div class="agent-card">
+                <div class="agent-profile-img"></div>
+                <h3 style="margin-bottom:4px;">Emma Woods</h3>
+                <div class="text-sm text-primary fw-bold" style="margin-bottom:16px;">Jellis Craig</div>
+                
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.8rem;">
+                    <span class="text-muted">Total Spend YTD</span>
+                    <span class="fw-bold">$19,400</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:16px; font-size:0.8rem;">
+                    <span class="text-muted">Active Jobs</span>
+                    <span class="fw-bold text-primary">2</span>
+                </div>
+                <button class="btn btn-outline btn-sm" style="width:100%; justify-content:center;">View Full Profile</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const sectionTitles = {
+        'dashboard': 'Executive Overview',
+        'jobs': 'Master Jobs Board',
+        'quotes': 'Quote Pipeline',
+        'inventory': 'Inventory Management',
+        'calendar': 'Operations Calendar',
+        'agents': 'Client Intelligence'
+    };
+
+    function showSection(id, navElement) {
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(s => {
+            s.classList.remove('active');
+            s.style.animation = 'none'; // reset animation
+            s.offsetHeight; // trigger reflow
+            s.style.animation = null; 
+        });
+        
+        // Show target section
+        document.getElementById(id).classList.add('active');
+        
+        // Update Nav
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        if (navElement) {
+            navElement.classList.add('active');
+        }
+
+        // Update Title
+        if (sectionTitles[id]) {
+            document.getElementById('header-title').innerText = sectionTitles[id];
+        }
+    }
+</script>
+</body>
+</html>

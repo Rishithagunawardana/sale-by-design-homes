@@ -1,0 +1,99 @@
+
+:root {
+    /* Minimal Dark Corporate Blue (Dark Theme Default) */
+    --primary: #335c94;
+    --primary-light: #4b7bb9;
+    --primary-glow: rgba(51, 92, 148, 0.15);
+    
+    --bg-dark: #070d14; /* Extremely deep blue/gray */
+    --panel: #0d1622;
+    --surface: #101c2b;
+    --surface-glass: rgba(13, 22, 34, 0.85);
+    --border: rgba(255, 255, 255, 0.08);
+    
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    
+    --green: #10b981;
+    --red: #ef4444;
+    --dark: var(--bg-dark);
+}
+
+[data-theme='light'] {
+    --primary: #2b5797;
+    --primary-light: #3871c1;
+    --primary-glow: rgba(43, 87, 151, 0.1);
+    
+    --bg-dark: #f8fafc;
+    --panel: #ffffff;
+    --surface: #f1f5f9;
+    --surface-glass: rgba(255, 255, 255, 0.9);
+    --border: rgba(0, 0, 0, 0.08);
+    
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    
+    --dark: var(--bg-dark);
+}
+
+body {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+    background: var(--surface-glass) !important;
+}
+
+input, select {
+    background: var(--panel) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-primary) !important;
+}
+
+.job-item, .metric-card, .metric-mini, .partner-card, .asset-card, .block, .quote-container {
+    background: var(--panel);
+}
+
+.glass-card {
+    background: var(--surface-glass) !important;
+}
+
+.job-item h4 {
+    color: var(--text-primary) !important;
+}
+
+.job-item p, .metric-card h3, .metric-mini label {
+    color: var(--text-secondary) !important;
+}
+
+nav {
+    background: var(--surface) !important;
+}
+
+nav a {
+    color: var(--text-secondary);
+}
+
+nav a:hover, nav a.active {
+    color: var(--text-primary);
+}
+
+.theme-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    transition: 0.2s;
+}
+
+.theme-toggle-btn:hover {
+    border-color: var(--primary);
+}
